@@ -1,14 +1,14 @@
-package com.wwy.myapplication
+package com.wwy.bottombarlayout
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.wwy.bottombarlayoutkt.R
 import kotlinx.android.synthetic.main.activity_view_pager.*
-import java.util.ArrayList
 
 /**
  *@创建者wwy
@@ -28,9 +28,12 @@ class ViewPageActivity : AppCompatActivity() {
     private fun initListener() {
         bbl.setOnItemSelectedListener { _, _, _ ->
             //如果点击了其他条目
-//            val bottomItem = bbl.getBottomItem(0)
-//            bottomItem.setSelectedIcon(R.mipmap.tab_home_selected)//更换为原来的图标
+            val bottomItem = bbl.getBottomItem(3)
         }
+        bbl.setUnread(0, 20)//设置第一个页签的未读数为20
+        bbl.setUnread(1, 1001)//设置第二个页签的未读数
+        bbl.showNotify(2)//设置第三个页签显示提示的小红点
+        bbl.setMsg(3, "NEW")//设置第四个页签显示NEW提示文字
     }
 
     private fun initData() {
@@ -63,7 +66,6 @@ class ViewPageActivity : AppCompatActivity() {
         bundle4.putString(TabFragment().CONTENT, "我的")
         meFragment.arguments = bundle4
         mFragmentList.add(meFragment)
-        Log.d("wwywwy", mFragmentList.size.toString())
 
     }
 
@@ -77,5 +79,22 @@ class ViewPageActivity : AppCompatActivity() {
         override fun getCount(): Int {
             return mFragmentList.size
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_demo, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when ( item.itemId) {
+            R.id.action_clear_unread -> {
+                bbl.setUnread(0, 0)
+                bbl.setUnread(1, 0)
+            }
+            R.id.action_clear_notify -> bbl.hideNotify(2)
+            R.id.action_clear_msg -> bbl.hideMsg(3)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

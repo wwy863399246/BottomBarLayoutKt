@@ -1,4 +1,4 @@
-package com.wwy.myapplication
+package com.wwy.bottombarlayout
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -8,6 +8,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -37,11 +38,11 @@ class BottomBarItem @JvmOverloads constructor(
     private var unreadTextSize: Int = 10 //未读数默认字体大小10sp
     var unreadNumThreshold: Int = 99//未读数阈值
     private var unreadTextColor: Int = 0//未读数字体颜色
-    private var unreadTextBg: Drawable? = drawable(R.drawable.shape_unread)//未读数字体背景
+    private var unreadTextBg: Drawable? //未读数字体背景
     private var msgTextSize: Int = 6 //消息默认字体大小6sp
     private var msgTextColor: Int = 0//消息文字颜色
-    private var msgTextBg: Drawable? = drawable(R.drawable.shape_msg)//消息文字背景
-    private var notifyPointBg: Drawable? = drawable(R.drawable.shape_notify_point)//小红点背景
+    private var msgTextBg: Drawable? //消息文字背景
+    private var notifyPointBg: Drawable?//小红点背景
 
     init {
         val obtainStyledAttributes = context.obtainStyledAttributes(attrs, R.styleable.BottomBarItem)
@@ -86,6 +87,7 @@ class BottomBarItem @JvmOverloads constructor(
         orientation = VERTICAL
         gravity = Gravity.CENTER
         View.inflate(context, R.layout.item_bottom_bar, this)
+        //  View.inflate(context, R.layout.item_bottom_bar, this)
         if (itemPadding != 0) {
             //如果有设置item的padding
             setPadding(itemPadding, itemPadding, itemPadding, itemPadding)
@@ -102,13 +104,25 @@ class BottomBarItem @JvmOverloads constructor(
 
         tv_unred_num.setTextSize(TypedValue.COMPLEX_UNIT_PX, unreadTextSize.toFloat())//设置未读数的字体大小
         tv_unred_num.setTextColor(unreadTextColor)//设置未读数字体颜色
-        tv_unred_num.background = unreadTextBg//设置未读数背景
+        if (null != unreadTextBg) {
+            tv_unred_num.background = unreadTextBg//设置未读数背景
+        } else {
+            tv_unred_num.background = drawable(R.drawable.shape_unread)
+        }
 
         tv_msg.setTextSize(TypedValue.COMPLEX_UNIT_PX, msgTextSize.toFloat())//设置提示文字的字体大小
         tv_msg.setTextColor(msgTextColor)//设置提示文字的字体颜色
-        tv_msg.background = msgTextBg//设置提示文字的背景颜色
+        if (null != msgTextBg) {
+            tv_msg.background = msgTextBg//设置提示文字的背景颜色
+        } else {
+            tv_msg.background = drawable(R.drawable.shape_msg)
+        }
 
-        tv_point.background = notifyPointBg//设置提示点的背景颜色
+        if (null != notifyPointBg) {
+            tv_point.background = notifyPointBg//设置提示文字的背景颜色
+        } else {
+            tv_point.background = drawable(R.drawable.shape_notify_point)
+        }
 
         tv_text.setTextColor(titleNormalColor)//设置底部文字字体颜色
         title?.let { tv_text.text = title }//设置标签文字
@@ -121,7 +135,13 @@ class BottomBarItem @JvmOverloads constructor(
             background = touchDrawable
         }
     }
+    fun getImageView(): ImageView {
+        return iv_icon
+    }
 
+    fun getTextView(): TextView {
+        return tv_text
+    }
     fun setNormalIcon(normalIcon: Drawable?) {
         this.normalIcon = normalIcon
         refreshTab()
@@ -146,7 +166,6 @@ class BottomBarItem @JvmOverloads constructor(
     }
 
     fun refreshTab() {
-        Log.d("wwywwy","isSelected---$isSelected")
         iv_icon.setImageDrawable(if (isSelected) selectedIcon else normalIcon)
         tv_text.setTextColor(if (isSelected) titleSelectedColor else titleNormalColor)
     }

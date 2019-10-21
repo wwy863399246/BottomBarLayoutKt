@@ -1,4 +1,4 @@
-package com.wwy.myapplication
+package com.wwy.bottombarlayout
 
 import android.content.Context
 import android.os.Bundle
@@ -130,7 +130,6 @@ class BottomBarLayout @JvmOverloads constructor(
     }
 
     override fun onPageSelected(position: Int) {
-        Log.d("wwywwy","position---$position")
         //重置
         resetState()
         mItemViews[position].refreshTab(true)
@@ -147,7 +146,6 @@ class BottomBarLayout @JvmOverloads constructor(
 
     private fun resetState() {
         if (mCurrentItem < mItemViews.size) {
-            Log.d("wwywwy","mCurrentItem---$mCurrentItem")
             mItemViews[mCurrentItem].refreshTab(false)
         }
     }
@@ -198,7 +196,9 @@ class BottomBarLayout @JvmOverloads constructor(
     fun hideNotify(position: Int) {
         mItemViews[position].hideNotify()
     }
-
+    fun getCurrentItem(): Int {
+        return mCurrentItem
+    }
     fun setSmoothScroll(smoothScroll: Boolean) {
         this.mSmoothScroll = smoothScroll
     }

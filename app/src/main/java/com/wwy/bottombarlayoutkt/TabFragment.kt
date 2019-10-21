@@ -1,4 +1,4 @@
-package com.wwy.myapplication
+package com.wwy.bottombarlayout
 
 import android.os.Bundle
 import android.view.Gravity
