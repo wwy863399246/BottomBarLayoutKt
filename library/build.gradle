@@ -24,11 +24,11 @@ android {
     }
 }
 publish {
-    repoName = 'MyMoven'           //bintray仓库名
+    repoName = 'Maven'           //bintray仓库名
     userOrg = 'wangwuyuan'           //bintray注册的用户名
     groupId = 'com.wwy'            //compile引用时的第1部分groupId
     artifactId = 'bottombarlayoutkt'       //compile引用时的第2部分项目名
-    publishVersion = '1.0.0'       //compile引用时的第3部分版本号
+    publishVersion = '1.0.0'     //compile引用时的第3部分版本号
     desc = 'This is a simple bottombar library for Android'
     website = 'https://github.com/wwy863399246/BottomBarLayoutKt.git'
 }
