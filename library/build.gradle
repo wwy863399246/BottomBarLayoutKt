@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.novoda.bintray-release'
+group='com.github.wwy863399246'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -23,15 +23,7 @@ android {
         abortOnError false
     }
 }
-publish {
-    repoName = 'Maven'           //bintray仓库名
-    userOrg = 'wangwuyuan'           //bintray注册的用户名
-    groupId = 'com.wwy'            //compile引用时的第1部分groupId
-    artifactId = 'bottombarlayoutkt'       //compile引用时的第2部分项目名
-    publishVersion = '1.0.0'     //compile引用时的第3部分版本号
-    desc = 'This is a simple bottombar library for Android'
-    website = 'https://github.com/wwy863399246/BottomBarLayoutKt.git'
-}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
