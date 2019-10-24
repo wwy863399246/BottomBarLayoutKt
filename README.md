@@ -4,16 +4,17 @@
 ## 下载demo 
 ### [点我下载.apk](https://github.com/wwy863399246/BottomBarLayoutKt/tree/master/apk/release/app-release.apk)
 ## 使用
- ```allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+ ```
+    allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
 	}
     dependencies {
 	        implementation 'com.github.wwy863399246:BottomBarLayoutKt:1.0.1'
 	}   
-   ```
+  ```
 
 
 
