@@ -7,12 +7,12 @@
  ```
     allprojects {
 	        repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+		              ...
+		              maven { url 'https://jitpack.io' }
+	        }
 	}
     dependencies {
-	        implementation 'com.github.wwy863399246:BottomBarLayoutKt:1.0.1'
+	         implementation 'com.github.wwy863399246:BottomBarLayoutKt:1.0.1'
 	}   
   ```
 
