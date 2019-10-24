@@ -6,7 +6,7 @@
 ## 使用
  ```
     allprojects {
-	repositories {
+	        repositories {
 		...
 		maven { url 'https://jitpack.io' }
 	}
