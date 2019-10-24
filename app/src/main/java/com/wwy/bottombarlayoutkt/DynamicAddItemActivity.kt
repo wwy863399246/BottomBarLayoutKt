@@ -78,7 +78,7 @@ class DynamicAddItemActivity : AppCompatActivity() {
     }
 
     private fun createBottomBarItem(i: Int): BottomBarItem {
-        return BottomBarItem(this).Builder(this)
+        return BottomBarItem(this).Builder()
             .titleTextSize(8)
             .titleNormalColor(R.color.tab_normal_color)
             .titleSelectedColor(R.color.tab_selected_color)

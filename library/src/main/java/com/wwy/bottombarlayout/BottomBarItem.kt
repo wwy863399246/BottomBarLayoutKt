@@ -229,7 +229,7 @@ class BottomBarItem @JvmOverloads constructor(
         return this
     }
 
-    inner class Builder(private val context: Context) {
+    inner class Builder {
         var normalIcon: Drawable? = null//普通状态图标的资源id
         var selectedIcon: Drawable? = null//选中状态图标的资源id
         var title: String? = null//标题
