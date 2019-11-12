@@ -112,7 +112,7 @@ class FragmentManagerActivity : AppCompatActivity() {
 
     private fun changeFragment(currentPosition: Int) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fl_content, mFragmentList.get(currentPosition))
+        transaction.replace(R.id.fl_content, mFragmentList[currentPosition])
         transaction.commit()
     }
 
